@@ -1,28 +1,15 @@
 class Solution {
     public int pivotInteger(int n) {
-        int l = 0, r = n;
-        while(l <= r) {
-            int m = l + (r - l)/2;
-            int v = isValid(n, m);
-            if(v == 0) {
-                return m;
-            }else if(v > 0) {
-                r = m - 1;
-            }else{
-                l = m + 1;
-            }
+        int sum = 0;
+        for(int i=1;i<=n;i++) {
+            sum += i;
+        }
+        int s = 0;
+        for(int i=0;i<=n;i++) {
+            s += i;
+            if(s * 2 - i == sum)
+                return i;
         }
         return -1;
-    }
-    
-    int isValid(int n, int m) {
-        int sum = 0;
-        for(int i=1;i<=n;i++){
-            if(i <= m)
-                sum += i;
-            if(i >= m)
-                sum -= i;
-        }
-        return sum;
     }
 }
