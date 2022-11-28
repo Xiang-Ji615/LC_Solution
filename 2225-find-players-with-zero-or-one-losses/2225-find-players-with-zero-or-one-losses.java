@@ -6,7 +6,6 @@ class Solution {
             map.put(m[0], map.getOrDefault(m[0], 0));
             map.put(m[1], map.getOrDefault(m[1], 0) - 1);
         }
-        System.out.println(map);
         TreeMap<Integer, TreeSet<Integer>> m = new TreeMap<>((a, b) -> b - a);
         for(Map.Entry<Integer, Integer> e : map.entrySet()) {
             m.putIfAbsent(e.getValue(), new TreeSet<>());
