@@ -1,7 +1,6 @@
 class Solution {
     public long findScore(int[] nums) {
         int l = nums.length;
-        Set<Integer> set = new HashSet<>();
         Map<Integer, Integer> map = new HashMap<>();
         for(int i=0;i<nums.length;i++) {
            map.put(i, nums[i]);
