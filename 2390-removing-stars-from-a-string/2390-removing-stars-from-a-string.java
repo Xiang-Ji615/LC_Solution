@@ -1,16 +1,16 @@
 class Solution {
     public String removeStars(String s) {
-        Stack<Character> stk = new Stack<>();
+        Deque<Character> dq = new ArrayDeque<>();
         for(char c : s.toCharArray()) {
             if(c == '*') {
-                stk.pop();
+                dq.pollLast();
             }else{
-                stk.push(c);
+                dq.offer(c);
             }
         }
         StringBuilder sb = new StringBuilder();
-        while(!stk.isEmpty()) {
-            sb.insert(0, stk.pop());
+        while(!dq.isEmpty()) {
+            sb.append(dq.poll());
         }
         return sb.toString();
     }
