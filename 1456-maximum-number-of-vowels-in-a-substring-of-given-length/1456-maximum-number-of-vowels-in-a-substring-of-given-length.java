@@ -9,8 +9,7 @@ class Solution {
         int res = 0, l = 0, tmp = 0;
         for(int r=0;r<s.length();r++) {
             char c = s.charAt(r);
-            if(set.contains(c))
-                tmp++;
+            tmp += set.contains(c) ? 1 : 0;
             while(r - l + 1 > k) {
                 tmp -= set.contains(s.charAt(l++)) ? 1 : 0;
             }
