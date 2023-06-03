@@ -10,10 +10,10 @@ class Solution {
     }
     
     int dfs(Map<Integer, List<Integer>> map, int[] arr, int cur) {
-        int res = 0;
         if(!map.containsKey(cur)) {
-            return res;
+            return 0;
         }
+        int res = 0;
         for(int nei : map.getOrDefault(cur, new ArrayList<>())) {
             res = Math.max(res, dfs(map, arr, nei));
         }
