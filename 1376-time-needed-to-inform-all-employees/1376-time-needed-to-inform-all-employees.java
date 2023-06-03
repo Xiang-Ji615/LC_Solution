@@ -1,4 +1,7 @@
 class Solution {
+    
+    int res = 0;
+    
     public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
         Map<Integer, List<Integer>> map = new HashMap<>();
         for(int i=0;i<manager.length;i++){
@@ -6,17 +9,17 @@ class Solution {
             map.putIfAbsent(j, new ArrayList<>());
             map.get(j).add(i);
         }
-        return dfs(map, informTime, headID);
+        dfs(map, informTime, headID, 0);
+        return res;
     }
     
-    int dfs(Map<Integer, List<Integer>> map, int[] arr, int cur) {
+    void dfs(Map<Integer, List<Integer>> map, int[] arr, int cur, int n) {
         if(!map.containsKey(cur)) {
-            return 0;
+            res = Math.max(res, n);
+            return;
         }
-        int res = 0;
         for(int nei : map.getOrDefault(cur, new ArrayList<>())) {
-            res = Math.max(res, dfs(map, arr, nei));
+            dfs(map, arr, nei, n + arr[cur]);
         }
-        return res + arr[cur];
     }
 }
