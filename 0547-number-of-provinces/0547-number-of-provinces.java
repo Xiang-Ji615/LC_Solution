@@ -1,36 +1,49 @@
 class Solution {
     
-    int res = 0;
-    
-    public int findCircleNum(int[][] isConnected) {
-        Map<Integer, Set<Integer>> map = new HashMap<>();
-        for(int i=0;i<isConnected.length;i++) {
-            for(int j=0;j<isConnected[i].length;j++) {
-                if(isConnected[i][j] == 1) {
-                    map.putIfAbsent(i, new HashSet<>());
-                    map.putIfAbsent(j, new HashSet<>());
-                    map.get(i).add(j);
-                    map.get(j).add(i);
-                }
+   public int findCircleNum(int[][] M) {
+        UF uf = new UF(M.length);
+        for(int i=0;i<M.length;i++){
+            for(int j=i+1;j<M[0].length;j++){
+                if(M[i][j] == 1)
+                    uf.union(i, j);
             }
         }
-        boolean[] visited = new boolean[isConnected.length];
-        for(int i=0;i<isConnected.length;i++) {
-            if(!visited[i]) {
-                dfs(map, visited, i);
-                res++;
-            }
-        }
-        return res;
+        return uf.cnt;
     }
     
-    void dfs(Map<Integer, Set<Integer>> map, boolean[] visited, int cur) {
-        if(visited[cur])
-            return;
-        visited[cur] = true;
-        for(int nei : map.getOrDefault(cur, new HashSet<>())) {
-            dfs(map, visited, nei);
+    class UF{
+        int[] p, w;
+        int cnt;
+    
+        public UF(int n){
+            p = new int[n];
+            w = new int[n];
+            Arrays.fill(w, 1);
+            for(int i=0;i<n;i++){
+                p[i] = i;
+            }
+            cnt = n;
         }
         
+        public int find(int n){
+            if(p[n] == n)
+                return n;
+            return p[n] = find(p[n]);
+        }
+        
+        public void union(int a, int b){
+            int pa = find(a);
+            int pb = find(b);
+            if(pa == pb)
+                return;
+            if(w[pa] > w[pb]){
+                p[pb] = pa;
+                w[pa] += w[pb];
+            }else{
+                p[pa] = pb;
+                w[pb] += w[pa];
+            }
+            cnt--;
+        }
     }
 }
