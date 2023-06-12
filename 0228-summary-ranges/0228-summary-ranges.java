@@ -3,14 +3,15 @@ class Solution {
         List<String> res = new ArrayList<>();
         if(nums == null || nums.length == 0)
             return res;
-        for(int i=0;i<nums.length;i++){
-            int a = nums[i];
-            while(i < nums.length-1 && nums[i+1] - nums[i] == 1)
+        for(int i=0;i<nums.length;i++) {
+            int n = nums[i];
+            while(i + 1 < nums.length && nums[i+1] == nums[i] + 1){
                 i++;
-            if(a!=nums[i])
-                res.add(a + "->" + nums[i]);
+            }
+            if(nums[i] == n) 
+                res.add(n + "");
             else
-                res.add(a+"");
+                res.add(n + "->" + nums[i]);
         }
         return res;
     }
