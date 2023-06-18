@@ -4,7 +4,6 @@ class Solution {
         while(mainTank > 0){
             int used = Math.min(mainTank, 5);
             mainTank -= used;
-            System.out.println(used);
             if(used == 5 && additionalTank > 0) {
                 mainTank++;
                 additionalTank--;
