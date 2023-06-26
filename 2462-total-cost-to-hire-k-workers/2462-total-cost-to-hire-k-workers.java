@@ -6,7 +6,6 @@ class Solution {
             minHeap.add(l++);
             if (l <= r) minHeap.add(r--);
         }
-
         long res = 0;
         while(k > 0) {
             int cur = minHeap.poll();
