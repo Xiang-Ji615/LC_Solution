@@ -12,13 +12,8 @@ class Solution {
                 map.put(moveTo[i], val);
             }
         }
-        
-        Set<Integer> res = new TreeSet<>();
-        for(Map.Entry<Integer, Integer> e : map.entrySet()) {
-            for(int i=0;i<e.getValue();i++) {
-                res.add(e.getKey());
-            }
-        }
-        return new ArrayList<>(res);
+        List<Integer> res = new ArrayList<>();
+        res.addAll(map.keySet());
+        return res;
     }
 }
