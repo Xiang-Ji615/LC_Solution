@@ -8,8 +8,8 @@ class Solution {
             }
         }
         for(int i=arr.length - 2;i>=0;i--) {
-            if(ratings[i] > ratings[i+1] && arr[i] < arr[i+1] + 1) {
-                arr[i] = arr[i+1] + 1;
+            if(ratings[i] > ratings[i+1]) {
+                arr[i] = Math.max(arr[i], arr[i+1] +1);
             }
         }
         int res = 0;
