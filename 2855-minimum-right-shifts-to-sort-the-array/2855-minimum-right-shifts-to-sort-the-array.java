@@ -7,7 +7,6 @@ class Solution {
             min = Math.min(min, nums.get(i));
         }
         int start = map.get(min);
-        System.out.println(start + "");
         for(int i=0;i<nums.size() - 1;i++) {
             if(nums.get(start%nums.size()) > nums.get((start + 1)%nums.size()))
                 return -1;
