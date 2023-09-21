@@ -7,7 +7,6 @@ class Solution {
             int[] cur = intervals[i];
             if(Math.max(prev[0], cur[0]) <= Math.min(prev[1], cur[1])) {
                 prev[1] = Math.max(cur[1], prev[1]);
-                prev[0] = Math.min(cur[0], prev[0]);
             }else{
                 lst.add(prev);
                 prev = cur;
